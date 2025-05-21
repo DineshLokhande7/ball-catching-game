@@ -22,24 +22,22 @@ jobs:
       with:
         python-version: 3.9
 
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-tk libglib2.0-dev binutils
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
 
-    - name: Run tests
-      run: |
-        # Add unit tests here if available
-        echo "No tests available"
-
     - name: Package application
       run: |
         pyinstaller --onefile app.py
-        mkdir -p dist
-        mv dist/app dist/ball-catching-game
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: ball-catching-game
-        path: dist/egg_catcher_game
+        path: dist/app
