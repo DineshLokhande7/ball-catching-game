@@ -35,6 +35,11 @@ jobs:
     - name: Package application
       run: |
         pyinstaller --onefile app.py
+        ls -l dist
+
+    - name: Debug dist directory
+      run: |
+        ls -l dist
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
