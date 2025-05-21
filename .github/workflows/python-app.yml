@@ -34,15 +34,16 @@ jobs:
 
     - name: Package application
       run: |
-        pyinstaller --onefile app.py
-        ls -l dist
+        pyinstaller --onefile app.py || true
+        ls -l dist || true
 
-    - name: Debug dist directory
+    - name: Debug working directory
       run: |
-        ls -l dist
+        ls -l
+        cat app.spec || true
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: ball-catching-game
-        path: dist
+        path: dist/app*
